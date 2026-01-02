@@ -1,71 +1,46 @@
-<h1 align="center">Hi 👋, I'm Shivam Sharma</h1>
-<h3 align="center">🎓 Student | Aspiring AI & Machine Learning Engineer</h3>
+# Pix AI — AI-Based Image Background Remover
 
-<p align="center">
-  <img src="https://img.shields.io/badge/AI-Machine%20Learning-blueviolet?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Student-Developer-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Open%20to-Learning-success?style=for-the-badge">
-</p>
+Pix AI is a full-stack AI-powered web application that allows users to remove the background of images using **Cloudinary's Generative AI APIs**. Built using **Next.js**, **Cloudinary**, and **Tailwind CSS**, the app offers a smooth UI with download functionality and social media preview support.  
 
 ---
 
-## 🧠 About Me
-
-- 🎓 Student passionate about **Artificial Intelligence & Machine Learning**
-- 🤖 Interested in **AI, ML, Data Science, Cloud & Automation**
-- 💻 Love solving real-world problems using code
-- 🌱 Currently learning **Python, Machine Learning & GitHub**
-- 📫 Reach me at: **shivamhp20@gmail.com**
+## 🚀 Features
+- ✅ Upload images directly from your device
+- 🧠 Uses Cloudinary Generative AI for background removal
+- 🔍 Real-time image preview after processing
+- 📥 Download processed image in one click
+- 🌐 Optimized for social media formats (coming soon)
+- 💬 Clean UI built with Tailwind CSS
+- 💻 Built using Next.js (App Router)
 
 ---
 
 ## 🛠️ Tech Stack
-
-### 💻 Programming & Tools
-- **Languages:** Python, HTML, CSS, JavaScript  
-- **AI / ML:** NumPy, Pandas, Matplotlib *(learning)*  
-- **Tools:** Git, GitHub, VS Code  
-- **OS:** Linux (Ubuntu), Windows  
-
----
-
-## 🤖 AI / ML Interests
-
-- Machine Learning Algorithms  
-- Data Analysis & Visualization  
-- Artificial Intelligence Applications  
-- Cloud-based AI Solutions  
+| Technology | Purpose |
+|------------|---------|
+| Next.js | React framework for frontend + API routes |
+| Cloudinary | AI-based image transformation & storage |
+| Tailwind CSS | Modern, utility-first styling |
+| React Hooks | State & side-effect management |
+| Cloudinary Upload Presets | Secure image upload configuration |
 
 ---
 
-## 📂 Projects
-
-- 🔹 **AI Portfolio Website** – GitHub Pages  
-- 🔹 **Resume Builder** – Web-based project  
-- 🔹 **ML Practice Notebooks** – Python & ML learning  
-- 🔹 **Academic Mini Projects**  
-
-🚀 *More AI & ML projects coming soon...*
+## 📷 Demo
+🔗 **Live Demo:** [Pix AI Live Demo](https://shivam1515-7828.vercel.app/)  
+📁 **Source Code:** [GitHub Repository](https://github.com/shivam1515-7828/pix-ai)  
 
 ---
 
-## 📊 GitHub Analytics
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=shivam1515-7828&show_icons=true&theme=tokyonight" height="170">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shivam1515-7828&layout=compact&theme=tokyonight" height="170">
-</p>
-
----
-
-## 🌐 Connect With Me
-
-- 💼 LinkedIn: [Shivam Sharma](https://www.linkedin.com/in/shivam-sharma-a285142b9)
-- 📧 Email: **shivamhp20@gmail.com**
-- 💻 GitHub: [shivam1515-7828](https://github.com/shivam1515-7828)
-
----
-
-<p align="center">
-  ⚡ <i>"Learning today, building tomorrow with AI."</i>
-</p>
+## 📂 Project Structure
+```bash
+/pix-ai
+├── app/
+│   └── page.jsx           # Main UI Page
+├── pages/api/
+│   └── imageuploader.js   # API to upload image to Cloudinary
+├── public/
+├── styles/
+├── utils/
+├── .env.local
+└── README.md
