@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* Custom Utilities */
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+}
+
+@utility glass-card {
+  @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl dark:bg-slate-900/80 dark:border-slate-800;
+}
+
+/* Root Variables */
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+  }
+
+  .dark {
+    --background: #020617;
+    --foreground: #f8fafc;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+}

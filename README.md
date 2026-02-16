@@ -1,71 +1,36 @@
-<h1 align="center">Hi 👋, I'm Shivam Sharma</h1>
-<h3 align="center">🎓 Student | Aspiring AI & Machine Learning Engineer</h3>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-<p align="center">
-  <img src="https://img.shields.io/badge/AI-Machine%20Learning-blueviolet?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Student-Developer-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Open%20to-Learning-success?style=for-the-badge">
-</p>
+## Getting Started
 
----
+First, run the development server:
 
-## 🧠 About Me
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- 🎓 Student passionate about **Artificial Intelligence & Machine Learning**
-- 🤖 Interested in **AI, ML, Data Science, Cloud & Automation**
-- 💻 Love solving real-world problems using code
-- 🌱 Currently learning **Python, Machine Learning & GitHub**
-- 📫 Reach me at: **shivamhp20@gmail.com**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-## 🛠️ Tech Stack
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### 💻 Programming & Tools
-- **Languages:** Python, HTML, CSS, JavaScript  
-- **AI / ML:** NumPy, Pandas, Matplotlib *(learning)*  
-- **Tools:** Git, GitHub, VS Code  
-- **OS:** Linux (Ubuntu), Windows  
+## Learn More
 
----
+To learn more about Next.js, take a look at the following resources:
 
-## 🤖 AI / ML Interests
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Machine Learning Algorithms  
-- Data Analysis & Visualization  
-- Artificial Intelligence Applications  
-- Cloud-based AI Solutions  
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
----
+## Deploy on Vercel
 
-## 📂 Projects
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- 🔹 **AI Portfolio Website** – GitHub Pages  
-- 🔹 **Resume Builder** – Web-based project  
-- 🔹 **ML Practice Notebooks** – Python & ML learning  
-- 🔹 **Academic Mini Projects**  
-
-🚀 *More AI & ML projects coming soon...*
-
----
-
-## 📊 GitHub Analytics
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=shivam1515-7828&show_icons=true&theme=tokyonight" height="170">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shivam1515-7828&layout=compact&theme=tokyonight" height="170">
-</p>
-
----
-
-## 🌐 Connect With Me
-
-- 💼 LinkedIn: [Shivam Sharma](https://www.linkedin.com/in/shivam-sharma-a285142b9)
-- 📧 Email: **shivamhp20@gmail.com**
-- 💻 GitHub: [shivam1515-7828](https://github.com/shivam1515-7828)
-
----
-
-<p align="center">
-  ⚡ <i>"Learning today, building tomorrow with AI."</i>
-</p>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
