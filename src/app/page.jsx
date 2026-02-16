@@ -1,152 +1,181 @@
+'use client';
+
 import Link from 'next/link';
-import { ArrowRight, Code, FileText, Layout, Zap, Smartphone, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Code, FileText, Layout, Zap, Smartphone, CheckCircle, Users, Briefcase } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-32 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-100 via-slate-50 to-slate-50 dark:from-purple-900/20 dark:via-slate-950 dark:to-slate-950 opacity-70"></div>
+  const { t, mounted } = useLanguage();
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium mb-8 dark:bg-blue-900/30 dark:text-blue-300">
+  if (!mounted) return null;
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen overflow-hidden">
+      {/* Background Blobs */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-500/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-40 px-4">
+        <motion.div
+          className="max-w-7xl mx-auto text-center"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-blue-600 text-sm font-semibold mb-10 dark:text-blue-400">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
             </span>
-            New Courses Available Now
-          </div>
+            {t('hero.badge')}
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
-            Learn. <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Build.</span> Grow.
-          </h1>
+          <motion.h1
+            variants={itemVariants}
+            className="text-6xl md:text-8xl font-black tracking-tighter text-slate-900 dark:text-white mb-8 leading-[0.9]"
+          >
+            {t('hero.title').split('.').map((part, i, arr) => (
+              <span key={i} className={i === 1 ? "text-gradient block md:inline" : "block md:inline"}>
+                {part}{i < arr.length - 1 ? "." : ""}
+                {i < arr.length - 1 && " "}
+              </span>
+            ))}
+          </motion.h1>
 
-          <p className="mt-4 text-xl text-slate-600 max-w-2xl mx-auto mb-10 dark:text-slate-300">
-            Master coding with interactive courses and build a job-ready resume in minutes. The all-in-one platform for your developer career.
-          </p>
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto mb-12 dark:text-slate-400 leading-relaxed"
+          >
+            {t('hero.subtitle')}
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center gap-6">
             <Link
               href="/auth/signup"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-full transition-all shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1"
+              className="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-2xl transition-all shadow-2xl shadow-blue-500/40 hover:-translate-y-1 overflow-hidden"
             >
-              Get Started <ArrowRight className="ml-2 h-5 w-5" />
+              <div className="absolute inset-0 bg-linear-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <span className="relative z-10 flex items-center">
+                {t('hero.ctaPrimary')} <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Link>
             <Link
-              href="/resume-builder"
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-full transition-all shadow-sm hover:shadow-md dark:bg-slate-800 dark:text-white dark:border-slate-700 dark:hover:bg-slate-700"
+              href="/internships"
+              className="inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-slate-700 glass-card rounded-2xl transition-all hover:-translate-y-1 dark:text-white"
             >
-              Build Resume
+              {t('hero.ctaSecondary')}
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-white dark:bg-slate-900/50">
+      <section className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl">Everything you need to succeed</h2>
-            <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">From learning to code to landing your dream job.</p>
-          </div>
+          <motion.div
+            className="text-center mb-24"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tight">
+              {t('features.title')}
+            </h2>
+            <div className="h-2 w-24 bg-linear-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-8" />
+            <p className="max-w-xl mx-auto text-lg text-slate-600 dark:text-slate-400 font-medium">
+              {t('features.subtitle')}
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-6 dark:bg-blue-900/30 dark:text-blue-400">
-                <Code className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Interactive Courses</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Learn web development, React, Next.js, and more with our hands-on coding courses designed for beginners and pros.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-6 dark:bg-purple-900/30 dark:text-purple-400">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Resume Builder</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Create ATS-friendly professional resumes in minutes. Choose from our modern templates and stand out.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-6 dark:bg-green-900/30 dark:text-green-400">
-                <Layout className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Modern Templates</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Access a library of clean, professional resume templates designed by experts to get you hired.
-              </p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600 mb-6 dark:bg-orange-900/30 dark:text-orange-400">
-                <Zap className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Fast & Efficient</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Build your resume and skills faster with our streamlined tools and focused learning paths.
-              </p>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600 mb-6 dark:bg-pink-900/30 dark:text-pink-400">
-                <Smartphone className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Fully Responsive</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Learn and build on the go. Our platform is optimized for all devices, from mobile to desktop.
-              </p>
-            </div>
-
-            {/* Feature 6 */}
-            <div className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1 dark:bg-slate-800/50 dark:border-slate-700">
-              <div className="h-12 w-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 mb-6 dark:bg-indigo-900/30 dark:text-indigo-400">
-                <CheckCircle className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3 dark:text-white">Job Ready</h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                We focus on skills that matter. Get the confidence you need to ace your interviews and land the job.
-              </p>
-            </div>
+            {(t('features.cards') || []).map((f, i) => {
+              const icons = [Code, Users, Briefcase, Zap, Smartphone, CheckCircle];
+              const Icon = icons[i] || Code;
+              const colors = ['blue', 'purple', 'green', 'orange', 'pink', 'indigo'];
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ y: -10 }}
+                  className="p-10 glass-card group cursor-default"
+                >
+                  <div className={`h-16 w-16 bg-${colors[i]}-500/10 rounded-2xl flex items-center justify-center text-${colors[i]}-500 mb-8 group-hover:scale-110 transition-transform`}>
+                    <Icon className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 dark:text-white">{f.title}</h3>
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                    {f.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-center text-white shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+      <section className="py-40 px-4">
+        <motion.div
+          className="max-w-6xl mx-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          <div className="relative bg-slate-900 rounded-[40px] p-12 md:p-20 text-center text-white shadow-[0_0_100px_rgba(37,99,235,0.2)] overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-linear-to-br from-blue-600/20 via-transparent to-purple-600/20" />
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to start your journey?</h2>
-              <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-                Join thousands of developers leveling up their careers with CodeBakers Learning.
+              <h2 className="text-4xl md:text-6xl font-black mb-8 leading-tight whitespace-pre-line">{t('cta.title')}</h2>
+              <p className="text-slate-400 text-xl mb-12 max-w-2xl mx-auto font-medium">
+                {t('cta.subtitle')}
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <Link
                   href="/auth/signup"
-                  className="px-8 py-3 bg-white text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-colors shadow-lg"
+                  className="px-10 py-4 bg-white text-slate-900 font-black rounded-2xl hover:bg-slate-100 transition-all shadow-xl hover:-translate-y-1"
                 >
-                  Create Free Account
+                  {t('cta.primary')}
                 </Link>
                 <Link
                   href="/courses"
-                  className="px-8 py-3 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors"
+                  className="px-10 py-4 bg-transparent border-2 border-white/20 text-white font-black rounded-2xl hover:bg-white/5 transition-all hover:border-white/40"
                 >
-                  Explore Courses
+                  {t('cta.secondary')}
                 </Link>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

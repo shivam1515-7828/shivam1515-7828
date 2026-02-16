@@ -1,7 +1,23 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 import { Mail, Lock, User, Github, ArrowRight } from 'lucide-react';
 
 export default function SignUp() {
+    const { signup } = useAuth();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (name && email && password) {
+            signup({ name, email }); // Assuming signup takes name and email
+        }
+    };
+
     return (
         <div className="min-h-screen pt-20 pb-12 flex flex-col justify-center sm:px-6 lg:px-8 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-fixed">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -18,7 +34,7 @@ export default function SignUp() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white/70 backdrop-blur-xl py-8 px-4 shadow-xl sm:rounded-2xl sm:px-10 border border-white/20 dark:bg-slate-900/70 dark:border-slate-800">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                                 Full Name
@@ -33,6 +49,8 @@ export default function SignUp() {
                                     type="text"
                                     autoComplete="name"
                                     required
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
                                     className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-slate-300 rounded-lg py-3 dark:bg-slate-800 dark:border-slate-700 dark:text-white text-slate-900 placeholder-slate-400"
                                     placeholder="John Doe"
                                 />
@@ -53,6 +71,8 @@ export default function SignUp() {
                                     type="email"
                                     autoComplete="email"
                                     required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-slate-300 rounded-lg py-3 dark:bg-slate-800 dark:border-slate-700 dark:text-white text-slate-900 placeholder-slate-400"
                                     placeholder="you@example.com"
                                 />
@@ -73,6 +93,8 @@ export default function SignUp() {
                                     type="password"
                                     autoComplete="new-password"
                                     required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
                                     className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 sm:text-sm border-slate-300 rounded-lg py-3 dark:bg-slate-800 dark:border-slate-700 dark:text-white text-slate-900 placeholder-slate-400"
                                     placeholder="••••••••"
                                 />
@@ -95,7 +117,7 @@ export default function SignUp() {
                                 <div className="w-full border-t border-slate-300 dark:border-slate-700" />
                             </div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-white/0 text-slate-500 dark:text-slate-400 backdrop-blur-sm bg-white dark:bg-slate-900">
+                                <span className="px-2 text-slate-500 dark:text-slate-400 backdrop-blur-sm bg-white dark:bg-slate-900">
                                     Or sign up with
                                 </span>
                             </div>

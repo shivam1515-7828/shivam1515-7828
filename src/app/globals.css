@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -7,18 +9,32 @@
 
 /* Custom Utilities */
 @utility text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+  @apply bg-clip-text text-transparent bg-linear-to-r from-blue-500 via-purple-500 to-pink-500;
 }
 
 @utility glass-card {
-  @apply bg-white/80 backdrop-blur-lg border border-white/20 shadow-xl dark:bg-slate-900/80 dark:border-slate-800;
+  @apply bg-white/40 backdrop-blur-xl border border-white/40 shadow-2xl dark:bg-slate-900/40 dark:border-white/10 dark:shadow-blue-500/10;
+}
+
+@utility mesh-gradient {
+  background-image:
+    radial-gradient(at 0% 0%, hsla(222, 100%, 60%, 0.15) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(260, 100%, 60%, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(320, 100%, 60%, 0.15) 0, transparent 50%);
+}
+
+@utility dark-mesh-gradient {
+  background-image:
+    radial-gradient(at 0% 0%, hsla(222, 100%, 50%, 0.1) 0, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(260, 100%, 50%, 0.1) 0, transparent 50%),
+    radial-gradient(at 50% 50%, hsla(320, 100%, 50%, 0.05) 0, transparent 50%);
 }
 
 /* Root Variables */
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #171717;
+    --foreground: #0f172a;
   }
 
   .dark {
@@ -27,6 +43,6 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+    @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100 transition-colors duration-500 mesh-gradient dark:dark-mesh-gradient;
   }
 }
